@@ -3,6 +3,8 @@ package org.java.spring_web5.db.pojo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +25,7 @@ public class Bookshelf {
     @Column(nullable = false, length = 128)
     private String address;
 
+    @JsonIgnore
     @ManyToMany
     private List<Book> books;
 

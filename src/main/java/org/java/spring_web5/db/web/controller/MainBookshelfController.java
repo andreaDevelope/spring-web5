@@ -64,7 +64,10 @@ public class MainBookshelfController{
 
         return ResponseEntity.ok().build();
     }
-    
 
-
+    @GetMapping("")
+    public ResponseEntity<List<Bookshelf>> getAll(){
+        List<Bookshelf> bookshelfs = bss.getAll();
+        return ResponseEntity.ok(bookshelfs);
+    }
 }
