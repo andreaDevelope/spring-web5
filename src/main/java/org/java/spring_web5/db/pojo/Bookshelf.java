@@ -73,6 +73,24 @@ public class Bookshelf {
         this.books = books;
     }
 
+    public void addBook(Book book) {
+
+        books.add(book);
+    }
+
+    public void removeBook(Book book) {
+
+        for (int i = 0; i < books.size(); i++) {
+
+            Book b = books.get(i);
+
+            if (b.getId() == book.getId()) {
+                books.remove(i);
+                return;
+            }
+        }
+    }
+
     @Override
     public String toString() {
 
