@@ -8,25 +8,30 @@ import org.java.spring_web5.db.repo.BookshelfRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class BookshelfServ {
+
     @Autowired
-    BookshelfRepo bsr;
+    private BookshelfRepo bookshelfRepo;
 
-    public List<Bookshelf> getAll(){
-        return bsr.findAll();
+    public List<Bookshelf> findAll() {
+
+        return bookshelfRepo.findAll();
     }
 
-    public Optional<Bookshelf> getById(int id){
-        return bsr.findById(id);
+    public Optional<Bookshelf> findById(int id) {
+
+        return bookshelfRepo.findById(id);
     }
 
-    public void save(Bookshelf b){
-        bsr.save(b);
+    public void save(Bookshelf bookshelf) {
+
+        bookshelfRepo.save(bookshelf);
     }
 
-    public void delete(Bookshelf b){
-        bsr.delete(b);
-    }
+    public void delete(Bookshelf bookshelf) {
 
+        bookshelfRepo.delete(bookshelf);
+    }
 }

@@ -1,6 +1,5 @@
 package org.java.spring_web5.db.pojo;
 
-
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,7 +31,7 @@ public class Bookshelf {
     public Bookshelf() {
     }
 
-    public Bookshelf(String name, String address, List<Book> books) {
+    public Bookshelf(String name, String address, List<Book> books) throws Exception {
 
         setName(name);
         setAddress(address);
@@ -51,7 +50,13 @@ public class Bookshelf {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws Exception {
+
+        if (name == null || name.isEmpty())
+            throw new Exception("Name is empty");
+
+        if (name.length() > 64)
+            throw new Exception("Name is too long");
 
         this.name = name;
     }
@@ -60,7 +65,13 @@ public class Bookshelf {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(String address) throws Exception {
+
+        if (name == null || name.isEmpty())
+            throw new Exception("Address is empty");
+
+        if (name.length() > 128)
+            throw new Exception("Address is too long");
 
         this.address = address;
     }

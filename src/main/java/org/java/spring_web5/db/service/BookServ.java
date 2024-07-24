@@ -4,29 +4,39 @@ import java.util.List;
 import java.util.Optional;
 
 import org.java.spring_web5.db.pojo.Book;
+import org.java.spring_web5.db.pojo.Bookshelf;
 import org.java.spring_web5.db.repo.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BookServ {
+
     @Autowired
-    BookRepo br;
+    private BookRepo bookRepo;
 
-    public List<Book> getAll(){
-        return br.findAll();
+    public List<Book> findAll() {
+
+        return bookRepo.findAll();
     }
 
-    public Optional<Book> findById(int id){
-        return br.findById(id);
+    public List<Book> findByBookshelf(Bookshelf bookshelf) {
+
+        return bookRepo.findByBookshelfs(bookshelf);
     }
 
-    public void save(Book b){
-        br.save(b);
+    public Optional<Book> findById(int id) {
+
+        return bookRepo.findById(id);
     }
 
-    public void delete(Book b){
-        br.delete(b);
+    public void save(Book book) {
+
+        bookRepo.save(book);
     }
 
+    public void delete(Book book) {
+
+        bookRepo.delete(book);
+    }
 }

@@ -1,6 +1,5 @@
 package org.java.spring_web5.db.pojo;
 
-
 import java.util.List;
 
 import org.java.spring_web5.db.web.dto.BookDto;

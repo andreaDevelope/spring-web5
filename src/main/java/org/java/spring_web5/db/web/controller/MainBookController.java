@@ -40,7 +40,17 @@ public class MainBookController{
     @GetMapping("")
     public ResponseEntity<List<Book>> getAllBooks() {
 
-        List<Book> books = bookServ.getAll();
+        List<Book> books = bookServ.findAll();
+
+        return ResponseEntity.ok(books);
+    }
+
+    @GetMapping("/bookshelfs/{bookshelfId}")
+    public ResponseEntity<List<Book>> getBooksByBookshelf(
+            @PathVariable int bookshelfId) {
+
+        Bookshelf bookshelf = bookshelfServ.findById(bookshelfId).get();
+        List<Book> books = bookServ.findByBookshelf(bookshelf);
 
         return ResponseEntity.ok(books);
     }
@@ -65,7 +75,7 @@ public class MainBookController{
         List<Bookshelf> bookshelves = new ArrayList<>();
         for (int bookshelfId : createBookDto.getBookshelfIds()) {
 
-            Optional<Bookshelf> bookShelf = bookshelfServ.getById(bookshelfId);
+            Optional<Bookshelf> bookShelf = bookshelfServ.findById(bookshelfId);
 
             if (bookShelf.isEmpty())
                 continue;
@@ -109,7 +119,7 @@ public class MainBookController{
         bookServ.save(newBook);
 
         List<Bookshelf> newBookshelfs = new ArrayList<>();
-        List<Bookshelf> allBookshelfs = bookshelfServ.getAll();
+        List<Bookshelf> allBookshelfs = bookshelfServ.findAll();
         for (Bookshelf bookshelf : allBookshelfs) {
 
             if (bookDto.getBookshelfIds()
